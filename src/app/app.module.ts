@@ -45,12 +45,21 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
+import { CommonModule }   from '@angular/common';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { MatAutocompleteSelectedEvent } from '@angular/material';
+
+
+
 import { CountryTimezoneMapComponent } from './country-timezone-map/country-timezone-map.component';
+import { CountryTimezoneTableComponent } from './country-timezone-table/country-timezone-table.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CountryTimezoneMapComponent,
+    CountryTimezoneTableComponent,
   ],
   imports: [
     BrowserModule,
@@ -99,6 +108,12 @@ import { CountryTimezoneMapComponent } from './country-timezone-map/country-time
     MatTreeModule,
     PortalModule,
     ScrollingModule,
+    CommonModule,
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    //MatAutocompleteSelectedEvent,
   ],
   providers: [],
   bootstrap: [AppComponent]

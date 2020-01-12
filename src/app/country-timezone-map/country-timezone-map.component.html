@@ -1,1 +1,45 @@
-<p>country-timezone-map works!</p>
+<form class="example-form" >
+  <mat-form-field class="example-full-width">
+    <input type="text" placeholder="Please Type Country" aria-label="Assignee" matInput [formControl]="countryControl" [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayCountry" (optionSelected)="onSelectionChanged($event)">
+      <mat-option *ngFor="let option of filteredOptions | async" [value]="option" >
+        {{option.countryName}}
+      </mat-option>
+    </mat-autocomplete>
+
+
+  </mat-form-field>
+
+
+  <mat-form-field class="example-full-width">
+  <input type="text" placeholder="Time Zone" aria-label="Number" matInput [formControl]="timeZoneControl" [matAutocomplete]="autox" >
+  <mat-autocomplete #autox="matAutocomplete"  (optionSelected)="onSelectionTimeZoneChanged($event)" [displayWith]="displayProperty" > 
+    <mat-option *ngFor="let option of timeZones" [value]="option" >
+      {{option.value}}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>
+<button mat-fab (click)="selectTimeZoneClicked()">Save</button>
+
+
+
+<div class="example-container mat-elevation-z8">
+  <mat-table #table [dataSource]="dataSource"> 
+      <ng-container matColumnDef="Name">
+          <mat-header-cell *matHeaderCellDef> Country Name </mat-header-cell>
+          <mat-cell *matCellDef="let country"> {{ country.countryName }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="Default Time Zone">
+          <mat-header-cell *matHeaderCellDef> Default Time Zone </mat-header-cell>
+          <mat-cell   *matCellDef="let country" > {{ country.defaultTimezone.value}} </mat-cell>
+      </ng-container>
+  
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let country; columns: displayedColumns;"></mat-row>
+      </mat-table>
+  <!--    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator> -->
+  </div>
+
+</form>
+
+
